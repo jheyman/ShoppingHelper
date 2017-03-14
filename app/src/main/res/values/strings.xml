@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Shopping Tracker</string>
+    <string name="shop_button_text">Achat</string>
+    <string name="reset_button_text">Reset budget</string>
+    <string name="spent_text">Dépensé:</string>
+    <string name="remaining_text">Reste:</string>
+    <string name="amount_spent_text">Montant?</string>
+    <string name="total_budget_text">Budget?</string>
+</resources>
