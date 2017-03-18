@@ -1,7 +1,10 @@
 package gbbtbb.com.shoppinghelper;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -13,12 +16,20 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static android.R.attr.priority;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,15 +44,30 @@ public class MainActivity extends AppCompatActivity {
     public String userValueSpent;
     public String userValueTotal;
 
-    public static final String APP_PREF_NAME = "comm.gbbtbb.shoppinghelper" ;
-    public static final String TOTALVAL_PARAM = "comm.gbbtbb.shoppinghelper.total" ;
-    public static final String REMAININGVAL_PARAM = "comm.gbbtbb.shoppinghelper.remaining" ;
+    public static String CONFIRMITEM_ACTION = "com.gbbtbb.shoppinghelper.CONFIRMITEM_ACTION";
+    public static String CANCELITEM_ACTION = "com.gbbtbb.shoppinghelper.CANCELITEM_ACTION";
+
+    public static String EXTRA_ITEM_POSITION = "com.gbbtbb.shoppinghelper.itemposition";
+
+    public static final String APP_PREF_NAME = "com.gbbtbb.shoppinghelper" ;
+    public static final String TOTALVAL_PARAM = "com.gbbtbb.shoppinghelper.total" ;
+    public static final String REMAININGVAL_PARAM = "com.gbbtbb.shoppinghelper.remaining" ;
     SharedPreferences sharedpreferences;
+
+    List<ListRowItem> listItems;
+    ListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(CONFIRMITEM_ACTION);
+        filter.addAction(CANCELITEM_ACTION);
+        filter.addCategory(Intent.CATEGORY_DEFAULT);
+
+        registerReceiver(ListBroadcastReceiver, filter);
 
         // Load latest values from app's preferences
         sharedpreferences = getSharedPreferences(APP_PREF_NAME, Context.MODE_PRIVATE);
@@ -114,7 +140,18 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+
+
+        listItems = new ArrayList<>();
+        listItems.add(new ListRowItem("name1", 10, "date1"));
+        listItems.add(new ListRowItem("name2", 20, "date2"));
+        listItems.add(new ListRowItem("name3", 30, "date3"));
+        listItems.add(new ListRowItem("name4", 40, "date4"));
+        ListView listView = (ListView)findViewById(R.id.item_list);
+        adapter = new ListAdapter(this, R.layout.list_item, listItems);
+        listView.setAdapter(adapter);
     }
+
 
     private static float getTextWidth(Paint p, String text) {
         return p.measureText(text);
@@ -208,6 +245,32 @@ public class MainActivity extends AppCompatActivity {
         iv.setImageBitmap(bmp);
     }
 
+    private final BroadcastReceiver ListBroadcastReceiver = new BroadcastReceiver()
+    {
+        @Override
+        public void onReceive(Context context, Intent intent)
+        {
+            Toast.makeText(context, "ONRECEIVE" ,Toast.LENGTH_SHORT).show();
+            Log.i("TEST", "ListBroadcastReceiver onReceive");
+
+            final String action = intent.getAction();
+
+            if (action.equals(CONFIRMITEM_ACTION)) {
+
+                int pos = intent.getIntExtra(EXTRA_ITEM_POSITION, 0);
+
+                Log.i("", "CONFIRM pos=" + Integer.toString(pos));
+            }
+            else if (action.equals(CANCELITEM_ACTION)) {
+
+                int pos = intent.getIntExtra(EXTRA_ITEM_POSITION, 0);
+
+                Log.i("", "CANCEL pos=" + Integer.toString(pos));
+            }
+        }
+    };
+
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -215,5 +278,11 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt(TOTALVAL_PARAM, totalBudget);
         editor.putInt(REMAININGVAL_PARAM, remainingBudget);
         editor.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(ListBroadcastReceiver);
     }
 }

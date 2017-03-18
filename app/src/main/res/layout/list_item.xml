@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_item_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/list_item_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="-----ITEM TEXT-------"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        android:paddingLeft="15dp"
+        android:gravity="center_vertical|left"
+        android:background="#00000000"/>
+
+    <TextView
+        android:id="@+id/listitem_creationdate"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="-----CREATION DATE-------"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        android:gravity="center_vertical|right"
+        android:background="#00000000" />
+
+    <TextView
+        android:id="@+id/listitem_amount"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:text="-----AMOUNT-------"
+        android:textColor="#000000"
+        android:textSize="10dp"
+        android:gravity="center_vertical|right"
+        android:background="#00000000" />
+
+    <ImageView
+        android:id="@+id/listitem_cancelicon"
+        android:layout_width="50px"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:padding="2dp"
+        android:visibility="visible"
+        android:src="@drawable/cancel"
+        android:background="#00000000"/>
+
+    <ImageView
+        android:id="@+id/listitem_confirmicon"
+        android:layout_width="50px"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:padding="2dp"
+        android:visibility="visible"
+        android:src="@drawable/confirm"
+        android:background="#00000000"/>
+<!--         android:onClick="confirmClickHandler"
+-->
+</LinearLayout>
