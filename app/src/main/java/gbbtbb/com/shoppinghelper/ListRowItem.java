@@ -5,13 +5,13 @@ public class ListRowItem {
     private String item_name;
     private int amount;
     private boolean alreadySpent;
-    private String creationDate;
+    private String date;
 
-    public ListRowItem(String name, int amount, String creationDate) {
+    public ListRowItem(int amount, String name, String date, boolean alreadySpent) {
         this.item_name = name;
         this.amount = amount;
         this.alreadySpent = alreadySpent;
-        this.creationDate = creationDate;
+        this.date=date;
     }
 
     public String getItemName() { return item_name; }
@@ -27,8 +27,8 @@ public class ListRowItem {
         this.amount = amount;
     }
 
-    public String getCreationDate() { return creationDate; }
-    public void setCreationDate(String date) { this.creationDate = date; }
+    public String getDate() { return date; }
+    public void setDate(String date) { this.date = date; }
 
     @Override
     public String toString() {

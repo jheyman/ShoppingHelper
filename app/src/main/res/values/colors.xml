@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <item name="spent" type="color">#c0c0c0</item>
+    <item name="futurespend" type="color">#a0a0a0</item>
+
 </resources>

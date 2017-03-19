@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Shopping Tracker</string>
+    <string name="amount_input_text">Amount</string>
+    <string name="amount_spent_text">Amount?</string>
+    <string name="empty_amount_text">Amount missing</string>
+    <string name="futureSpent_text">planned</string>
+    <string name="name_input_text">Description</string>
+    <string name="preshop_button_text">Planned</string>
+    <string name="remaining_text">remaining:</string>
+    <string name="reset_button_text">Reset budget</string>
+    <string name="shop_button_text">Buy</string>
+    <string name="spent_text">spent:</string>
+    <string name="total_budget_text">Budget?</string>
+    <string name="wrong_amount_text">Wrong amount</string>
+</resources>

@@ -1,9 +1,18 @@
 <resources>
     <string name="app_name">Shopping Tracker</string>
+    <string name="preshop_button_text">Prévision</string>
     <string name="shop_button_text">Achat</string>
     <string name="reset_button_text">Reset budget</string>
-    <string name="spent_text">Dépensé:</string>
-    <string name="remaining_text">Reste:</string>
+    <string name="spent_text">dépensé:</string>
+    <string name="futureSpent_text">prévu</string>
+    <string name="remaining_text">reste:</string>
     <string name="amount_spent_text">Montant?</string>
     <string name="total_budget_text">Budget?</string>
+
+    <string name="amount_input_text">Montant</string>
+    <string name="name_input_text">Description</string>
+
+    <string name="wrong_amount_text">Mauvais montant</string>
+    <string name="empty_amount_text">Montant manquant</string>
+
 </resources>
